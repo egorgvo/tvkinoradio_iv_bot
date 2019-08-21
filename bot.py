@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# coding=utf-8
 
 import os
 from urllib.parse import urlparse
@@ -26,7 +27,8 @@ def convert_tvkinoradio_link_to_iv(bot, update):
     request = Request(url=url, params=params)
     request = request.prepare()
     iv_url = request.url
-    new_text = f"[IV]({iv_url}) 🎥 [Открыть сайт]({tvkinoradio_url})"
+    camera_emoji = b'\xF0\x9F\x93\xB9'.decode('utf8')
+    new_text = "[IV]({}) {} [Открыть сайт]({})".format(iv_url, camera_emoji, tvkinoradio_url)
     bot.delete_message(chat_id, message_id)
     bot.sendMessage(chat_id, text=new_text, parse_mode=ParseMode.MARKDOWN)
 
